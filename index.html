@@ -1,22 +1,40 @@
-
 <!DOCTYPE html>
 <html>
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width">
   <title>JS Bin</title>
+<style id="jsbin-css">
+body {
+  color: red;
+}
+</style>
 </head>
 <body>
   <h1>Hello World</h1>
+  <ul>
+  </ul>
 <script id="jsbin-javascript">
+const ul = document.querySelector('ul');
 document.querySelector('h1').addEventListener('click', (ev)=> {
-  ev.target.innerText = Math.random();
+  const rnd = Math.random();
+  ev.target.innerText = rnd
+  const el = document.createElement('li');
+  el.innerText = rnd;
+  ul.append(el);
+  
 })
 </script>
 
 
 
-<script id="jsbin-source-javascript" type="text/javascript">document.querySelector('h1').addEventListener('click', (ev)=> {
-  ev.target.innerText = Math.random();
+<script id="jsbin-source-javascript" type="text/javascript">const ul = document.querySelector('ul');
+document.querySelector('h1').addEventListener('click', (ev)=> {
+  const rnd = Math.random();
+  ev.target.innerText = rnd
+  const el = document.createElement('li');
+  el.innerText = rnd;
+  ul.append(el);
+  
 })</script></body>
 </html>
