@@ -1,40 +1,72 @@
-<!DOCTYPE html>
 <html>
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width">
-  <title>JS Bin</title>
-<style id="jsbin-css">
-body {
-  color: red;
+  <head>
+<style>
+form {
+  border: solid 1px dodgerBlue;
+  padding: 1rem;
+  display: flex;
+  justify-content: center;
+}
+input {
+  height: 3rem;
+}
+
+#container {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  height: 100vh;
+}
+
+#container > div {
+  width: 25px;
+  height: 25px;
+  background-color: tomato;
+  border-radius: 50%;
+}
+
+#container > div.blue {
+  background-color: dodgerBlue;
+  transition: background-color 1s;
 }
 </style>
-</head>
-<body>
-  <h1>Hello World</h1>
-  <ul>
-  </ul>
-<script id="jsbin-javascript">
-const ul = document.querySelector('ul');
-document.querySelector('h1').addEventListener('click', (ev)=> {
-  const rnd = Math.random();
-  ev.target.innerText = rnd
-  const el = document.createElement('li');
-  el.innerText = rnd;
-  ul.append(el);
-  
-})
-</script>
+  </head>
+  <body>
+    <form>
+      <input name='px' value='50'/>
+    </form>
+    <div id='container'>
+    </div>
 
+  <script>
+    const form = document.querySelector('form');
+    const input = document.querySelector("input[name='px']");
+    const container = document.querySelector('#container');
 
+    container.addEventListener('click', (ev)=> {
+      if(ev.target.classList.contains('blue')){
+        container.removeChild(ev.target);
+      }
+    });
 
-<script id="jsbin-source-javascript" type="text/javascript">const ul = document.querySelector('ul');
-document.querySelector('h1').addEventListener('click', (ev)=> {
-  const rnd = Math.random();
-  ev.target.innerText = rnd
-  const el = document.createElement('li');
-  el.innerText = rnd;
-  ul.append(el);
-  
-})</script></body>
+    const generateCircle = ()=> {
+      const circle = document.createElement('div');
+      const size = `${input.value}px`;
+      circle.style.width = size; 
+      circle.style.height = size; 
+      container.appendChild(circle);
+      input.value = 25 + Math.floor(Math.random()*50);
+      setTimeout(function(){
+        circle.classList.add('blue');
+      }, 500);
+    };
+    form.addEventListener('submit', function(ev){
+      ev.preventDefault();
+      generateCircle();
+    });
+    generateCircle();
+    generateCircle();
+    generateCircle();
+  </script>
+  </body>
 </html>
